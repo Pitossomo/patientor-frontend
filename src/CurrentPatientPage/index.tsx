@@ -3,6 +3,7 @@ import { Box, Typography } from "@material-ui/core";
 
 import HealthRatingBar from "../components/HealthRatingBar";
 import { useParams } from "react-router-dom";
+import GenderIcon from "../components/GenderIcon";
 // import GenderIcon from "../components/GenderIcon";
 
 const PatientPage = () => {
@@ -24,6 +25,7 @@ const PatientPage = () => {
       <Box>
         <Typography variant="h6">
           {currentPatient.name}
+          <GenderIcon gender={currentPatient.gender} />
         </Typography>
         <Typography>ssn: {currentPatient.ssn}</Typography>
         {currentPatient?.occupation
