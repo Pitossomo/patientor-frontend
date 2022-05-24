@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography } from "@material-ui/core";
 
 import HealthRatingBar from "../components/HealthRatingBar";
@@ -7,12 +7,13 @@ import GenderIcon from "../components/GenderIcon";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
 import { Patient } from "../types";
+import { useStateValue } from "../state";
 
 const PatientPage = () => {
+  const [state, dispatch] = useStateValue();
   const { id } = useParams<{ id: string }>();
-  const [currentPatient, setCurrentPatient] = useState<Patient | undefined>(undefined);
-  console.log(id);
 
+  const currentPatient = state.currentPatient;
   if (!id) return null;
 
   React.useEffect(() => {
@@ -23,10 +24,9 @@ const PatientPage = () => {
         const { data: patientFromApi } = await axios.get<Patient>(
           `${apiBaseUrl}/patients/${id}`
         );
+        console.log("patientFromApi: ", patientFromApi);
+        dispatch({ type: "SET_CURRENT_PATIENT", payload: patientFromApi });
 
-        console.log(patientFromApi);
-
-        setCurrentPatient(patientFromApi);
       } catch (e) {
         console.error(e);
       }
