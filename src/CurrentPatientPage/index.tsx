@@ -7,7 +7,7 @@ import GenderIcon from "../components/GenderIcon";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
 import { Patient } from "../types";
-import { useStateValue } from "../state";
+import { setCurrentPatient, useStateValue } from "../state";
 
 const PatientPage = () => {
   const [state, dispatch] = useStateValue();
@@ -24,8 +24,7 @@ const PatientPage = () => {
         const { data: patientFromApi } = await axios.get<Patient>(
           `${apiBaseUrl}/patients/${id}`
         );
-        console.log("patientFromApi: ", patientFromApi);
-        dispatch({ type: "SET_CURRENT_PATIENT", payload: patientFromApi });
+        dispatch(setCurrentPatient(patientFromApi));
 
       } catch (e) {
         console.error(e);
