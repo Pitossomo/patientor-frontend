@@ -2,12 +2,14 @@ import React from "react";
 import { Box, Typography } from "@material-ui/core";
 
 import HealthRatingBar from "../components/HealthRatingBar";
-import { useParams } from "react-router-dom";
 import GenderIcon from "../components/GenderIcon";
+import Entries from "./Entries";
+
+import { setCurrentPatient, useStateValue } from "../state";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
 import { Patient } from "../types";
-import { setCurrentPatient, useStateValue } from "../state";
 
 const PatientPage = () => {
   const [state, dispatch] = useStateValue();
@@ -47,6 +49,9 @@ const PatientPage = () => {
           ? <Typography>occupation: {currentPatient.occupation}</Typography>
           : null
         }
+        <br />
+        <Entries entries={currentPatient.entries} />
+
       </Box>
 
       <HealthRatingBar showText={false} rating={1} />
