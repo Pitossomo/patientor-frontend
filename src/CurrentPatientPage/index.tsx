@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
-import HealthRatingBar from "../components/HealthRatingBar";
 import GenderIcon from "../components/GenderIcon";
 import Entries from "./Entries";
 
@@ -39,22 +38,17 @@ const PatientPage = () => {
 
   if (currentPatient) return (
     <div className="App">
-      <Box>
-        <Typography variant="h6">
-          {currentPatient.name}
-          <GenderIcon gender={currentPatient.gender} />
-        </Typography>
-        <Typography>ssn: {currentPatient.ssn}</Typography>
-        {currentPatient?.occupation
-          ? <Typography>occupation: {currentPatient.occupation}</Typography>
-          : null
-        }
-        <br />
-        <Entries entries={currentPatient.entries} />
-
-      </Box>
-
-      <HealthRatingBar showText={false} rating={1} />
+      <Typography variant="h6">
+        {currentPatient.name}
+        <GenderIcon gender={currentPatient.gender} />
+      </Typography>
+      <Typography>ssn: {currentPatient.ssn}</Typography>
+      {currentPatient?.occupation
+        ? <Typography>occupation: {currentPatient.occupation}</Typography>
+        : null
+      }
+      <br />
+      <Entries entries={currentPatient.entries} />
     </div>
   );
 
