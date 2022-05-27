@@ -1,7 +1,10 @@
 import { Box, Typography } from "@material-ui/core";
+import { useStateValue } from "../state";
 import { Entry } from "../types";
 
 const Entries = ({ entries }: { entries: Entry[] }) => {
+  const [{ diagnoses },] = useStateValue();
+
   if (entries.length === 0) return null;
 
   return <Box>
@@ -14,7 +17,11 @@ const Entries = ({ entries }: { entries: Entry[] }) => {
           {
             entry.diagnosisCodes
               ? <ul>
-                {entry.diagnosisCodes.map((code, j) => <li key={`code${i}${j}`}>{code}</li>)}
+                {entry.diagnosisCodes.map((code, j) =>
+                  <li key={`code${i}${j}`}>
+                    {code} {diagnoses[code].name}
+                  </li>
+                )}
               </ul>
               : null
           }
