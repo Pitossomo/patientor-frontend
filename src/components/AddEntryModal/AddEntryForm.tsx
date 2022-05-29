@@ -1,15 +1,21 @@
 import React from "react";
 import { useStateValue } from "../../state";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 
-import { DiagnosisSelection } from "../FormField";
-import { EntryWithoutId } from "../../types";
-import { Button, Grid } from "@material-ui/core";
+import { DiagnosisSelection, EntryTypeOption, SelectField } from "../FormField";
+import { EntryType, EntryWithoutId } from "../../types";
+import { Button, Grid, TextField } from "@material-ui/core";
 
 interface Props {
   onSubmit: (values: EntryWithoutId) => void;
   onCancel: () => void
 }
+
+const typeOptions: EntryTypeOption[] = [
+  { value: EntryType.HealthCheck, label: "Health Check" },
+  { value: EntryType.Hospital, label: "Hospital" },
+  { value: EntryType.OccupationalHealthcare, label: "Occupational Healthcare" },
+];
 
 const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
   const [{ diagnoses }] = useStateValue();
@@ -17,23 +23,64 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
   return (
     <Formik
       initialValues={{
+        type: "HealthCheck",
         description: "",
         date: "",
         specialist: "",
         diagnosisCodes: [],
-        type: "HealthCheck",
         healthCheckRating: 3
       }}
       onSubmit={onSubmit}
     >
-      {({ isValid, dirty, setFieldValue, setFieldTouched }) => {
+      {({ values, isValid, dirty, setFieldValue, setFieldTouched }) => {
         return (
           <Form className="form ui">
+            <SelectField label="Type" name="type" options={typeOptions} />
+
+            <Field
+              label="Description"
+              placeholder="Description"
+              name="description"
+              component={TextField}
+            />
+
+            <Field
+              label="Specialist"
+              placeholder="Specialist"
+              name="specialist"
+              component={TextField}
+            />
+
+            <Field
+              label="Date"
+              placeholder="Date"
+              name="date"
+              component={TextField}
+            />
+
             <DiagnosisSelection
               setFieldValue={setFieldValue}
               setFieldTouched={setFieldTouched}
               diagnoses={Object.values(diagnoses)}
             />
+
+            {values.type === "Hospital" && <>
+              <Field
+                label="Discharge date"
+                placeholder="Discharge date"
+                name="dischargeDate"
+                component={TextField}
+              />
+
+              <Field
+                label="Discharge criteria"
+                placeholder="Discharge criteria"
+                name="dischargeCriteria"
+                component={TextField}
+              />
+
+            </>}
+
 
             <Grid>
               <Grid item>

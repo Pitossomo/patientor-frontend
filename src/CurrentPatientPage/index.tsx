@@ -22,7 +22,10 @@ const PatientPage = () => {
 
   const openModal = (): void => setModalOpen(true);
 
-  const closeModal = (): void => setModalOpen(true);
+  const closeModal = (): void => {
+    setModalOpen(false);
+    setError(undefined);
+  };
 
   const submitNewEntry = async (entryValues: EntryWithoutId) => {
     try {
