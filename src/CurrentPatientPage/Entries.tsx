@@ -1,5 +1,5 @@
 import { Box, Typography } from "@material-ui/core";
-import EntryBox from "../components/Entry.tsx/Entry";
+import EntryBox from "../components/EntryBox";
 import { Entry } from "../types";
 
 const Entries = ({ entries }: { entries: Entry[] }) => {

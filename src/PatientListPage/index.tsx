@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { Box, Table, Button, TableHead, Typography, TableCell, TableRow, TableBody } from "@material-ui/core";
 
 import HealthRatingBar from "../components/HealthRatingBar";
-import { PatientFormValues } from "../AddPatientModal/AddPatientForm";
+import { PatientFormValues } from "../components/AddPatientModal/AddPatientForm";
 
-import AddPatientModal from "../AddPatientModal";
+import AddPatientModal from "../components/AddPatientModal";
 import { Patient } from "../types";
 import { apiBaseUrl } from "../constants";
 import { addPatient, useStateValue } from "../state";
