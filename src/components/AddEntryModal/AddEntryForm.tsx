@@ -5,6 +5,7 @@ import { Field, Form, Formik } from "formik";
 import { DiagnosisSelection, EntryTypeOption, SelectField } from "../FormField";
 import { EntryType, EntryWithoutId } from "../../types";
 import { Button, Grid, TextField } from "@material-ui/core";
+import HospitalFields from "./HospitalFields";
 
 interface Props {
   onSubmit: (values: EntryWithoutId) => void;
@@ -64,23 +65,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
               diagnoses={Object.values(diagnoses)}
             />
 
-            {values.type === "Hospital" && <>
-              <Field
-                label="Discharge date"
-                placeholder="Discharge date"
-                name="dischargeDate"
-                component={TextField}
-              />
-
-              <Field
-                label="Discharge criteria"
-                placeholder="Discharge criteria"
-                name="dischargeCriteria"
-                component={TextField}
-              />
-
-            </>}
-
+            {values.type === "Hospital" && <HospitalFields />}
 
             <Grid>
               <Grid item>
