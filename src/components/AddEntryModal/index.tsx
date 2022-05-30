@@ -6,7 +6,7 @@ import AddEntryForm from "./AddEntryForm";
 interface Props {
   modalOpen: boolean;
   onClose: () => void;
-  onSubmit: (entryValues: EntryWithoutId) => void;
+  onSubmit: (values: EntryWithoutId) => void;
   error?: string;
 }
 

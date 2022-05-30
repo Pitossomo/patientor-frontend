@@ -33,7 +33,7 @@ const CommonFields = (): Props => {
 
     <Field
       label="Date"
-      placeholder="Date"
+      placeholder="YYYY-MM-DD"
       name="date"
       component={TextField}
     />

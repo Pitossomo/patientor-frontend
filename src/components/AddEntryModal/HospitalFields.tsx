@@ -1,22 +1,22 @@
-import { TextField } from "@material-ui/core";
+import { TextField } from "../FormField";
 import { Field } from "formik";
 
 const HospitalFields = () => (
   <>
     <Field
       label="Discharge date"
-      placeholder="Discharge date"
-      name="dischargeDate"
+      placeholder="YYYY-MM-DD"
+      name="discharge.date"
       component={TextField}
     />
 
     <Field
       label="Discharge criteria"
       placeholder="Discharge criteria"
-      name="dischargeCriteria"
+      name="discharge.criteria"
       component={TextField}
     />
   </>
-)
+);
 
-export default HospitalFields
+export default HospitalFields;

@@ -27,11 +27,12 @@ const PatientPage = () => {
     setError(undefined);
   };
 
-  const submitNewEntry = async (entryValues: EntryWithoutId) => {
+  const submitNewEntry = async (values: EntryWithoutId) => {
     try {
+      console.log(values);
       const { data: savedEntry } = await axios.post<Patient>(
         `${apiBaseUrl}/patients/${id}/entries`,
-        entryValues
+        values
       );
       if (currentPatient) console.log('addEntry', savedEntry); //dispatch(addEntry(newEntry, currentPatient.id));
       closeModal();

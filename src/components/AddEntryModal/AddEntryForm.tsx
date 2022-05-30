@@ -2,9 +2,9 @@ import React from "react";
 import { useStateValue } from "../../state";
 import { Field, Form, Formik } from "formik";
 
-import { DiagnosisSelection, EntryTypeOption, SelectField } from "../FormField";
+import { DiagnosisSelection, EntryTypeOption, SelectField, TextField } from "../FormField";
 import { EntryType, EntryWithoutId } from "../../types";
-import { Button, Grid, TextField } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import HospitalFields from "./HospitalFields";
 
 interface Props {
@@ -24,12 +24,16 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
   return (
     <Formik
       initialValues={{
-        type: "HealthCheck",
+        type: "Hospital",
         description: "",
         date: "",
         specialist: "",
         diagnosisCodes: [],
-        healthCheckRating: 3
+        healthCheckRating: 3,
+        discharge: {
+          date: "",
+          criteria: ""
+        }
       }}
       onSubmit={onSubmit}
     >
@@ -54,7 +58,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
 
             <Field
               label="Date"
-              placeholder="Date"
+              placeholder="YYYY-MM-DD"
               name="date"
               component={TextField}
             />
