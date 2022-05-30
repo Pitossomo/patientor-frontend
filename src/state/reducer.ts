@@ -21,7 +21,7 @@ export type Action =
   }
   | {
     type: "ADD_ENTRY";
-    payload: Entry;
+    payload: Entry
   };
 
 export const setPatientList = (patientListFromApi: Patient[]): Action => {
@@ -41,7 +41,10 @@ export const setDiagnosesList = (diagnosesListFromApi: Diagnosis[]): Action => {
 };
 
 export const addEntry = (newEntry: Entry): Action => {
-  return { type: "ADD_ENTRY", payload: newEntry };
+  return {
+    type: "ADD_ENTRY",
+    payload: newEntry,
+  };
 };
 
 export const reducer = (state: State, action: Action): State => {
@@ -81,8 +84,14 @@ export const reducer = (state: State, action: Action): State => {
         }
       };
     case "ADD_ENTRY":
+      if (!state.currentPatient) return state;
+
       return {
         ...state,
+        currentPatient: {
+          ...state.currentPatient,
+          entries: state.currentPatient.entries.concat(action.payload)
+        }
       };
     default:
       return state;

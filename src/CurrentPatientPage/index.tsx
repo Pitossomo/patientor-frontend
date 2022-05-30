@@ -4,11 +4,11 @@ import { Button, Typography } from "@material-ui/core";
 import GenderIcon from "../components/GenderIcon";
 import Entries from "./Entries";
 
-import { setCurrentPatient, useStateValue } from "../state";
+import { addEntry, setCurrentPatient, useStateValue } from "../state";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
-import { EntryWithoutId, Patient } from "../types";
+import { Entry, EntryWithoutId, Patient } from "../types";
 import AddEntryModal from "../components/AddEntryModal";
 
 const PatientPage = () => {
@@ -30,11 +30,11 @@ const PatientPage = () => {
   const submitNewEntry = async (values: EntryWithoutId) => {
     try {
       console.log(values);
-      const { data: savedEntry } = await axios.post<Patient>(
+      const { data: savedEntry } = await axios.post<Entry>(
         `${apiBaseUrl}/patients/${id}/entries`,
         values
       );
-      if (currentPatient) console.log('addEntry', savedEntry); //dispatch(addEntry(newEntry, currentPatient.id));
+      dispatch(addEntry(savedEntry));
       closeModal();
 
     } catch (e: unknown) {
