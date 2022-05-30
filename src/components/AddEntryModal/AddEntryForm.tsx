@@ -6,6 +6,7 @@ import { DiagnosisSelection, EntryTypeOption, SelectField, TextField } from "../
 import { EntryType, EntryWithoutId } from "../../types";
 import { Button, Grid } from "@material-ui/core";
 import HospitalFields from "./HospitalFields";
+import { validateRequiredDate, validateRequiredValue } from "../../utils";
 
 interface Props {
   onSubmit: (values: EntryWithoutId) => void;
@@ -29,7 +30,6 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
         date: "",
         specialist: "",
         diagnosisCodes: [],
-        healthCheckRating: 3,
         discharge: {
           date: "",
           criteria: ""
@@ -47,6 +47,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
               placeholder="Description"
               name="description"
               component={TextField}
+              validate={validateRequiredValue}
             />
 
             <Field
@@ -54,6 +55,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
               placeholder="Specialist"
               name="specialist"
               component={TextField}
+              validate={validateRequiredValue}
             />
 
             <Field
@@ -61,6 +63,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
               placeholder="YYYY-MM-DD"
               name="date"
               component={TextField}
+              validate={validateRequiredDate}
             />
 
             <DiagnosisSelection

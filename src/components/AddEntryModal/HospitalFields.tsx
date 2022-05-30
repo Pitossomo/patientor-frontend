@@ -1,5 +1,6 @@
 import { TextField } from "../FormField";
 import { Field } from "formik";
+import { validateRequiredDate, validateRequiredValue } from "../../utils";
 
 const HospitalFields = () => (
   <>
@@ -8,6 +9,7 @@ const HospitalFields = () => (
       placeholder="YYYY-MM-DD"
       name="discharge.date"
       component={TextField}
+      validate={validateRequiredDate}
     />
 
     <Field
@@ -15,6 +17,7 @@ const HospitalFields = () => (
       placeholder="Discharge criteria"
       name="discharge.criteria"
       component={TextField}
+      validate={validateRequiredValue}
     />
   </>
 );
