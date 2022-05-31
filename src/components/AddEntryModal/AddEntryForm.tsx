@@ -8,6 +8,7 @@ import { Button, Grid } from "@material-ui/core";
 import HospitalFields from "./HospitalFields";
 import { validateRequiredDate, validateRequiredValue } from "../../utils";
 import HealthCheckFields from "./HealthCheckFields";
+import OccupationalHealthcareFields from "./OccupationalHealthcareFields";
 
 interface Props {
   onSubmit: (values: EntryWithoutId) => void;
@@ -75,7 +76,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
 
             {values.type === EntryType.Hospital && <HospitalFields />}
             {values.type === EntryType.HealthCheck && <HealthCheckFields />}
-
+            {values.type === EntryType.OccupationalHealthcare && <OccupationalHealthcareFields />}
 
             <Grid>
               <Grid item>
