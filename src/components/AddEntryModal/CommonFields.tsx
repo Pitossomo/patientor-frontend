@@ -1,8 +1,7 @@
 import { TextField } from "@material-ui/core";
 import { Field } from "formik";
-import { useStateValue } from "../../state";
 import { EntryType } from "../../types";
-import { DiagnosisSelection, EntryTypeOption, SelectField } from "../FormField";
+import { EntryTypeOption, SelectField } from "../FormField";
 
 const typeOptions: EntryTypeOption[] = [
   { value: EntryType.HealthCheck, label: "Health Check" },
@@ -10,10 +9,7 @@ const typeOptions: EntryTypeOption[] = [
   { value: EntryType.OccupationalHealthcare, label: "Occupational Healthcare" },
 ];
 
-interface Props {
-}
-
-const CommonFields = (): Props => {
+const CommonFields = () => {
   return <>
     <SelectField label="Type" name="type" options={typeOptions} />
 
@@ -37,7 +33,7 @@ const CommonFields = (): Props => {
       name="date"
       component={TextField}
     />
-  </>
-}
+  </>;
+};
 
-export default CommonFields
+export default CommonFields;
